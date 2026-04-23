@@ -2,7 +2,7 @@
 
 # Web Scraper
 
-**Modern command-line web scraper & crawler with a beautiful Rich terminal UI.**
+**A modern command-line web scraper & crawler with a beautiful Rich terminal UI.**
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Requests](https://img.shields.io/badge/requests-2.31%2B-2496ed?style=for-the-badge)](https://requests.readthedocs.io)
@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/badge/License-MIT-7c3aed?style=for-the-badge)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-44%20passing-22c55e?style=for-the-badge)]()
 
-*Seiten scrapen, crawlen und exportieren — schnell, höflich, hübsch. Kein Account. Keine Cloud. Läuft lokal.*
+*Scrape, crawl and export web pages — fast, polite, pretty. No account. No cloud. Runs locally.*
 
 <sub>Version **2.0.0** · MIT · Built with Python · [Changelog](CHANGELOG.md)</sub>
 
@@ -34,78 +34,78 @@ __        __   _       ____
 
 </div>
 
-<!-- Für einen echten Screenshot: starte das Projekt, mach einen Screenshot und ersetze den Platzhalter. -->
+<!-- For a real screenshot: run the project, take a screenshot, and replace this placeholder. -->
 <!-- ![Screenshot](docs/screenshot.png) -->
 
 ---
 
-## Inhalt
+## Contents
 
 - [Features](#features)
-- [Schnellstart](#schnellstart)
-- [Befehle](#befehle)
-- [Optionen im Detail](#optionen-im-detail)
-- [Beispiele](#beispiele)
-- [Als Bibliothek nutzen](#als-bibliothek-nutzen)
-- [Projektstruktur](#projektstruktur)
-- [Architektur](#architektur)
-- [Abhängigkeiten](#abhängigkeiten)
+- [Quick Start](#quick-start)
+- [Commands](#commands)
+- [Options in Detail](#options-in-detail)
+- [Examples](#examples)
+- [Use as a Library](#use-as-a-library)
+- [Project Structure](#project-structure)
+- [Architecture](#architecture)
+- [Dependencies](#dependencies)
 - [Tests](#tests)
 - [Roadmap](#roadmap)
-- [Mitmachen](#mitmachen)
-- [Ethik](#ethik)
-- [Lizenz](#lizenz)
+- [Contributing](#contributing)
+- [Ethics](#ethics)
+- [License](#license)
 
 ---
 
 ## Features
 
-|    | Feature | Beschreibung |
-|----|---------|--------------|
-| 🕷 | **Einzelseiten-Scrape** | Titel, Meta, Headings, Paragraphen, Links, Bilder, OpenGraph, JSON-LD |
-| 🌐 | **BFS-Crawler** | Folgt internen Links mit einstellbarer Seiten- und Tiefenbegrenzung |
-| 🤝 | **robots.txt** | Respektiert standardmäßig — optional via `--no-robots` abschaltbar |
-| 🗺 | **Sitemap** | Automatische Sitemap-Erkennung + `--use-sitemap` als Crawl-Seed |
-| 🎯 | **URL-Filter** | Include/Exclude über beliebige Regex-Patterns |
-| 🔁 | **Retry & Backoff** | Exponentielles Backoff bei transienten Fehlern |
-| ⏲ | **Rate Limiting** | Delay + optionaler Jitter für natürliches Request-Timing |
-| 🎭 | **UA-Rotation** | Rotierender Browser-User-Agent pro Request |
-| 🎨 | **Rich-UI** | Farbige Panels, Tabellen, Progress Bars im Terminal |
-| 💾 | **Multi-Export** | JSON, CSV, **Markdown**-Report, oder alles auf einmal |
-| 📊 | **Statistiken** | Wörter, Response-Zeit, Top-Domains, Gesamtgröße |
-| 🧪 | **Getestet** | 44 Tests mit `pytest`, saubere Type-Hints |
+|    | Feature | Description |
+|----|---------|-------------|
+| 🕷 | **Single-page scrape** | Title, meta, headings, paragraphs, links, images, OpenGraph, JSON-LD |
+| 🌐 | **BFS crawler** | Follows internal links with configurable page and depth limits |
+| 🤝 | **robots.txt** | Respected by default — can be disabled with `--no-robots` |
+| 🗺 | **Sitemap** | Automatic sitemap discovery + `--use-sitemap` as a crawl seed |
+| 🎯 | **URL filters** | Include/exclude via arbitrary regex patterns |
+| 🔁 | **Retry & backoff** | Exponential backoff on transient failures |
+| ⏲ | **Rate limiting** | Delay + optional jitter for natural request pacing |
+| 🎭 | **UA rotation** | Rotating browser User-Agent per request |
+| 🎨 | **Rich UI** | Colored panels, tables, progress bars in your terminal |
+| 💾 | **Multi-format export** | JSON, CSV, **Markdown** report, or everything at once |
+| 📊 | **Statistics** | Words, response time, top domains, total size |
+| 🧪 | **Tested** | 44 tests with `pytest`, clean type hints |
 
 ---
 
-## Schnellstart
+## Quick Start
 
 ```bash
-# 1) Repo klonen
+# 1) Clone the repo
 git clone https://github.com/Pommes2030450/web-scraper.git
 cd web-scraper
 
-# 2) Abhängigkeiten installieren
+# 2) Install dependencies
 pip install -r requirements.txt
 
-# 3) Los geht's
+# 3) Go!
 python -m src.main scrape https://example.com
 ```
 
-**Windows-Nutzer:** einfach `start.bat` doppelklicken — installiert und öffnet eine fertige Shell.
+**Windows users:** just double-click `start.bat` — it installs dependencies and opens a ready-to-use shell.
 
 ---
 
-## Befehle
+## Commands
 
-| Befehl    | Zweck |
-|-----------|-------|
-| `scrape`  | Eine einzelne Seite scrapen und als Panel anzeigen |
-| `crawl`   | Website crawlen (BFS), Ergebnisse exportieren |
-| `links`   | Alle Links einer Seite auflisten |
-| `sitemap` | Sitemap entdecken und URLs anzeigen |
-| `info`    | Kompakte 1-Zeilen-Zusammenfassung einer URL |
+| Command   | Purpose |
+|-----------|---------|
+| `scrape`  | Scrape a single page and show it as a panel |
+| `crawl`   | Crawl a website (BFS), export results |
+| `links`   | List all links on a page |
+| `sitemap` | Discover a sitemap and list URLs |
+| `info`    | Compact one-line summary of a URL |
 
-Komplette Hilfe:
+Full help:
 
 ```bash
 python -m src.main --help
@@ -114,91 +114,91 @@ python -m src.main crawl --help
 
 ---
 
-## Optionen im Detail
+## Options in Detail
 
 ### `crawl`
 
-| Option | Standard | Beschreibung |
+| Option | Default | Description |
 |---|---|---|
-| `--max-pages` | `10` | Maximale Anzahl gescrapter Seiten |
-| `--max-depth` | `3` | Maximale Link-Tiefe ausgehend von der Start-URL |
-| `--delay` | `1.0` | Pause zwischen Requests (Sekunden) |
-| `--jitter` | `0.0` | Zufälliger Extra-Delay (Sekunden, 0 = aus) |
-| `--timeout` | `10` | HTTP-Timeout (Sekunden) |
-| `--retries` | `2` | Anzahl Wiederholungen bei Fehler |
-| `--stay-on-domain / --cross-domain` | stay | Nur gleiche Domain, oder extern folgen |
-| `--no-robots` | — | robots.txt ignorieren (nicht empfohlen) |
-| `--rotate-ua` | — | User-Agent pro Request rotieren |
-| `--user-agent` | — | Eigener User-Agent |
-| `--include REGEX` | — | Nur URLs, die dem Regex entsprechen (mehrfach möglich) |
-| `--exclude REGEX` | — | URLs ausschließen, die dem Regex entsprechen |
-| `--use-sitemap` | — | Sitemap zusätzlich als Seed verwenden |
+| `--max-pages` | `10` | Maximum number of scraped pages |
+| `--max-depth` | `3` | Maximum link depth from the start URL |
+| `--delay` | `1.0` | Pause between requests (seconds) |
+| `--jitter` | `0.0` | Random extra delay (seconds, 0 = off) |
+| `--timeout` | `10` | HTTP timeout (seconds) |
+| `--retries` | `2` | Number of retries on failure |
+| `--stay-on-domain / --cross-domain` | stay | Only same domain, or follow external links |
+| `--no-robots` | — | Ignore robots.txt (not recommended) |
+| `--rotate-ua` | — | Rotate User-Agent per request |
+| `--user-agent` | — | Custom User-Agent |
+| `--include REGEX` | — | Only URLs matching the regex (can be repeated) |
+| `--exclude REGEX` | — | Skip URLs matching the regex |
+| `--use-sitemap` | — | Additionally use the sitemap as a seed |
 | `--export` | — | `json` · `csv` · `md` · `both` · `all` |
-| `--output-dir` | `data` | Ausgabe-Verzeichnis |
-| `--output-name` | `result` | Dateiname ohne Endung |
-| `--verbose / -v` | — | Ausführliche Ausgabe |
+| `--output-dir` | `data` | Output directory |
+| `--output-name` | `result` | File name without extension |
+| `--verbose / -v` | — | Verbose output |
 
 ### `scrape`
 
-| Option | Zweck |
+| Option | Purpose |
 |---|---|
-| `--timeout` | HTTP-Timeout |
-| `--user-agent` | Eigener User-Agent |
-| `--no-robots` | robots.txt ignorieren |
-| `--verbose` | Ausführliche Ausgabe |
+| `--timeout` | HTTP timeout |
+| `--user-agent` | Custom User-Agent |
+| `--no-robots` | Ignore robots.txt |
+| `--verbose` | Verbose output |
 
 ### `links`
 
-| Option | Zweck |
+| Option | Purpose |
 |---|---|
-| `--limit` | Wie viele Links anzeigen |
-| `--same-domain-only` | Nur interne Links |
-| `--external-only` | Nur externe Links |
+| `--limit` | How many links to display |
+| `--same-domain-only` | Only internal links |
+| `--external-only` | Only external links |
 
 ### `sitemap`
 
-| Option | Zweck |
+| Option | Purpose |
 |---|---|
-| `--limit` | Wie viele URLs anzeigen |
-| `--export PATH` | URLs als Textdatei exportieren |
+| `--limit` | How many URLs to display |
+| `--export PATH` | Export URLs to a text file |
 
 ---
 
-## Beispiele
+## Examples
 
 ```bash
-# Schnellcheck einer Seite
+# Quick-check a page
 python -m src.main info https://example.com
 
-# Detaillierte Einzelseite
+# Detailed single-page scrape
 python -m src.main scrape https://example.com --verbose
 
-# 50 Seiten crawlen, 2 s Delay, Markdown + JSON + CSV exportieren
+# Crawl 50 pages, 2s delay, export Markdown + JSON + CSV
 python -m src.main crawl https://example.com \
     --max-pages 50 --delay 2.0 --export all --output-name example
 
-# Nur /blog/**, keine /drafts/, bis Tiefe 4
+# Only /blog/**, skip /drafts/, up to depth 4
 python -m src.main crawl https://example.com \
     --include "/blog/" --exclude "/drafts/" --max-depth 4
 
-# Cross-Domain-Crawl mit UA-Rotation
+# Cross-domain crawl with UA rotation
 python -m src.main crawl https://example.com \
     --cross-domain --rotate-ua --max-pages 30
 
-# Sitemap als Seed, 100 Seiten
+# Seed the crawl from a sitemap, 100 pages
 python -m src.main crawl https://example.com \
     --use-sitemap --max-pages 100 --export json
 
-# Sitemap anzeigen und nach urls.txt exportieren
+# Show sitemap and export URLs to urls.txt
 python -m src.main sitemap https://example.com --export urls.txt
 
-# Nur externe Links einer Seite
+# Only external links on a page
 python -m src.main links https://example.com --external-only
 ```
 
 ---
 
-## Als Bibliothek nutzen
+## Use as a Library
 
 ```python
 from src import WebScraper, ScraperConfig
@@ -216,13 +216,13 @@ result = scraper.scrape("https://example.com")
 
 print(result.summary())
 for page in result.pages:
-    print(f"{page.status_code}  {page.title}  ({page.word_count} Wörter)")
+    print(f"{page.status_code}  {page.title}  ({page.word_count} words)")
 
 result.export_json("data/example.json")
 result.export_markdown("data/example.md")
 ```
 
-Oder die ergonomische Kurzform:
+Or the ergonomic short form:
 
 ```python
 from src import WebScraper
@@ -234,34 +234,34 @@ print(page.title, page.canonical_url, page.language, page.word_count)
 
 ---
 
-## Projektstruktur
+## Project Structure
 
 ```
 002_web_scraper/
 ├── src/
 │   ├── __init__.py          # Public API (WebScraper, ScraperConfig, …)
 │   ├── main.py              # CLI (scrape, crawl, links, sitemap, info)
-│   ├── scraper.py           # BFS-Crawler + ScraperConfig
-│   ├── models.py            # ScrapedPage, ScrapeResult, Exporter
-│   ├── display.py           # Rich-Panels, Tabellen, Banner
+│   ├── scraper.py           # BFS crawler + ScraperConfig
+│   ├── models.py            # ScrapedPage, ScrapeResult, exporters
+│   ├── display.py           # Rich panels, tables, banner
 │   └── utils.py             # URLs, HTTP, robots, sitemap, parsing
 ├── tests/
-│   └── test_main.py         # 44 Unit-Tests
-├── data/                    # Exportierte JSON/CSV/Markdown-Dateien
-├── docs/                    # Screenshots, zusätzliche Docs
+│   └── test_main.py         # 44 unit tests
+├── data/                    # Exported JSON/CSV/Markdown files
+├── docs/                    # Screenshots, extra docs
 ├── requirements.txt
 ├── pyproject.toml
 ├── LICENSE
 ├── CHANGELOG.md
 ├── .gitignore
 ├── .env.example
-├── start.bat                # Windows One-Click
+├── start.bat                # Windows one-click
 └── README.md
 ```
 
 ---
 
-## Architektur
+## Architecture
 
 ```
          ┌─────────────────────────┐
@@ -281,28 +281,28 @@ print(page.title, page.canonical_url, page.language, page.word_count)
    └───────────────────┘  └──────────┬──────────┘
                                      ▼
                            ┌───────────────────┐
-                           │   display.py      │  Rich-UI
-                           │  Panels, Tables,  │
-                           │  Progress, Tree   │
+                           │   display.py      │  Rich UI
+                           │  Panels, tables,  │
+                           │  progress, tree   │
                            └───────────────────┘
 ```
 
-- **Trennung der Verantwortlichkeiten:** Netzwerk (`utils`), Zustand (`models`), Engine (`scraper`), UI (`display`), CLI (`main`).
-- **Pure-Functions-freundlich:** Parser und Normalisierer sind ohne Seiteneffekte und leicht testbar.
-- **Konfigurationsobjekt:** `ScraperConfig` kapselt alle Parameter — sauber, typsicher, dokumentiert.
+- **Separation of concerns:** networking (`utils`), state (`models`), engine (`scraper`), UI (`display`), CLI (`main`).
+- **Pure-function friendly:** parsers and normalizers are side-effect-free and easy to test.
+- **Configuration object:** `ScraperConfig` bundles every parameter — clean, typed, documented.
 
 ---
 
-## Abhängigkeiten
+## Dependencies
 
-| Paket | Zweck |
+| Package | Purpose |
 |---|---|
-| `requests` | HTTP-Requests |
-| `beautifulsoup4` | HTML-Parsing |
-| `lxml` | Schneller HTML/XML-Parser-Backend |
-| `rich` | Farbige Terminal-Ausgabe und Progress Bars |
-| `click` | CLI-Framework |
-| `python-dotenv` | `.env`-Unterstützung |
+| `requests` | HTTP requests |
+| `beautifulsoup4` | HTML parsing |
+| `lxml` | Fast HTML/XML parser backend |
+| `rich` | Colored terminal output and progress bars |
+| `click` | CLI framework |
+| `python-dotenv` | `.env` support |
 
 Dev-only: `pytest`, `pytest-cov`, `ruff`.
 
@@ -312,52 +312,52 @@ Dev-only: `pytest`, `pytest-cov`, `ruff`.
 
 ```bash
 pytest -q
-pytest tests/ -v --cov=src           # mit Coverage
+pytest tests/ -v --cov=src           # with coverage
 ```
 
-**Aktueller Stand:** 44 Tests grün.
+**Current status:** 44 tests passing.
 
 ---
 
 ## Roadmap
 
-- [ ] Async-Crawler (`httpx` + `asyncio`) für massiv parallele Requests
-- [ ] Persistente Crawl-Wiederaufnahme (Resume-from-checkpoint)
-- [ ] Pluggable Exporter (SQLite, Parquet)
-- [ ] Headless-Browser-Mode für JavaScript-lastige Seiten (Playwright)
-- [ ] Optionale **Web-UI** (FastAPI + HTMX) als Alternative zur CLI
-- [ ] Optionale **TUI** (Textual) mit Live-Log-Panel
+- [ ] Async crawler (`httpx` + `asyncio`) for massively parallel requests
+- [ ] Persistent crawl resume (resume-from-checkpoint)
+- [ ] Pluggable exporters (SQLite, Parquet)
+- [ ] Headless-browser mode for JavaScript-heavy sites (Playwright)
+- [ ] Optional **Web UI** (FastAPI + HTMX) as an alternative to the CLI
+- [ ] Optional **TUI** (Textual) with a live-log panel
 
 ---
 
-## Mitmachen
+## Contributing
 
-Contributions sind willkommen! Ablauf:
+Contributions are welcome! Workflow:
 
-1. Issue öffnen oder bestehenden auswählen.
-2. Fork → Feature-Branch → Tests schreiben → PR.
-3. Linting: `ruff check src tests`. Formatting passt meistens automatisch.
-
----
-
-## Ethik
-
-Bitte scrape verantwortungsvoll:
-
-- **robots.txt respektieren** (Default).
-- Nicht-triviale Delays verwenden (`--delay 1.5` oder mehr).
-- Eigenen, ehrlichen User-Agent mit Kontaktweg setzen.
-- Keine Seiten hinter Login/Paywall scrapen, sofern du kein Recht dazu hast.
-- ToS der Zielsite prüfen.
+1. Open an issue or pick an existing one.
+2. Fork → feature branch → write tests → PR.
+3. Linting: `ruff check src tests`. Formatting usually takes care of itself.
 
 ---
 
-## Lizenz
+## Ethics
+
+Please scrape responsibly:
+
+- **Respect robots.txt** (default).
+- Use non-trivial delays (`--delay 1.5` or more).
+- Set an honest User-Agent with a contact method.
+- Don't scrape content behind login/paywall unless you're allowed to.
+- Check the target site's ToS.
+
+---
+
+## License
 
 [MIT](LICENSE) © 2026 Pommes2030450
 
 <div align="center">
 
-**⭐ Wenn dir das Tool gefällt, gib ihm einen Star auf GitHub!**
+**⭐ If you like this tool, give it a star on GitHub!**
 
 </div>
